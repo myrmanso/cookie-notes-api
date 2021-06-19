@@ -12,14 +12,14 @@ const recipeSchema = new Schema({
   externalLink: { type: String },
   recipe: { type: [Object], recipeType },
   role: { type: String, enum: ['public', 'private'], default: 'public' },
-  meals: { type: String, enum: MEALS, required: true },
+  meals: { type: [String], enum: MEALS, required: true },
   flavor: { type: [Object], flavorType },
   basedPlants: { type: String, enum: BASED_PLANTS },
   cost: { type: String, enum: COST },
   userCreator: { type: Types.ObjectId, ref: 'Users' },
   users: { type: [Types.ObjectId], ref: 'Users' },
-  numberLikes: { type: Number, default: 0 },
-  numberComments: { type: Number, default: 0 }
+  likes: { type: [Types.ObjectId], ref: 'Likes' },
+  comments: { type: [Types.ObjectId], ref: 'Comments' }
 },
   {
     timestamps: true,
