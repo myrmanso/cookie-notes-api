@@ -13,3 +13,4 @@ const commentSchema = new Schema({
 const Comments = model('Comments', commentSchema);
 
 module.exports = Comments;
+
