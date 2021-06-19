@@ -1,0 +1,21 @@
+module.exports = Object.freeze({
+  LEVEL_FLAVOR: [1, 2, 3, 4, 5],
+  MEALS: ['CAFÉ DA MANHÃ', 'ALMOÇO', 'JANTAR', 'LANCHE', 'SNACK', 'APERITIVO'],
+  FLAVORS: ['DOCE', 'SALGADO', 'PICANTE'],
+  BASED_PLANTS: ['VEGANO', 'VEGETARIANO'],
+  COST: ['BAIXO', 'MEDIO', 'ALTO'],
+  LEVEL: ['INICIANTE', 'AMADOR', 'EXPERIENTE'],
+  COMMEMORATIVE_DATES: [
+    'DIA DOS NAMORADOS',
+    'ANIVERSÁRIO',
+    'NATAL',
+    'REVEILLON',
+    'DIA DAS MÃES',
+    'DIA DOS PAÍS',
+    'DIA DAS CRIANÇAS',
+    'PÁSCOA',
+    'SEXTA-FEIRA SANTA',
+    'CARNAVAL',
+    'DIA DAS BRUXAS'
+  ]
+});
