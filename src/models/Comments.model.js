@@ -1,9 +1,9 @@
 const { Schema, model, Types } = require('mongoose');
 
 const commentSchema = new Schema({
-  comment: { type: String, required: true },
-  recipe: { type: Types.ObjectId, ref: 'Recipes' },
-  Users: { type: Types.ObjectId, ref: 'Users' },
+  text: { type: String, required: true },
+  recipe: { type: Types.ObjectId, ref: 'Recipes', required: true },
+  user: { type: Types.ObjectId, ref: 'Users', require: true },
 },
   {
     timestamps: true,
