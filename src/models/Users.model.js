@@ -7,8 +7,8 @@ const userSchema = new Schema({
   role: { type: String, enum: ['user', 'admin'], default: 'user' },
   active: { type: Boolean, default: true },
   recipes: { type: [Types.ObjectId], ref: 'Recipes' },
-  followers: { type: [Types.ObjectId] },
-  following: { type: [Types.ObjectId] },
+  followers: { type: [Types.ObjectId], ref: 'Users' },
+  following: { type: [Types.ObjectId], ref: 'Users' },
 },
   {
     timestamps: true,
