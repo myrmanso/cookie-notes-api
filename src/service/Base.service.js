@@ -3,7 +3,7 @@ class BaseService {
     this.model = model;
   }
 
-  async searchAll() {
+  searchAll = async () => {
     try {
       return await this.model.find();
     } catch (error) {
@@ -11,7 +11,7 @@ class BaseService {
     }
   }
 
-  async searchByEmail(email) {
+  searchByEmail = async (email) => {
     try {
       return await this.model.findOne({ email: email });
 
@@ -20,7 +20,7 @@ class BaseService {
     }
   }
 
-  async searchById(userId) {
+  searchById = async (userId) => {
     try {
       return await this.model.findById(userId)
 
@@ -29,7 +29,7 @@ class BaseService {
     }
   }
 
-  async create(body) {
+  create = async (body) => {
     try {
       return this.model.create(body);
 
@@ -38,9 +38,9 @@ class BaseService {
     }
   }
 
-  async update(id, body) {
+  update = async (id, body) => {
     try {
-      return await this.model.findByIdAndUpdate(id, { ...body })
+      return await this.model.findOneAndUpdate({ _id: id }, { ...body })
     } catch (error) {
       console.log('BaseService.update - error ', error);
     }
