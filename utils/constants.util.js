@@ -1,6 +1,6 @@
 module.exports = Object.freeze({
   LEVEL_FLAVOR: [1, 2, 3, 4, 5],
-  MEALS: ['CAFÉ DA MANHÃ', 'ALMOÇO', 'JANTAR', 'LANCHE', 'SNACK', 'APERITIVO'],
+  MEALS: ['CAFÉ DA MANHÃ', 'ALMOÇO', 'JANTAR', 'LANCHE', 'SNACK', 'APERITIVO', 'SOBREMESA'],
   FLAVORS: ['DOCE', 'SALGADO', 'PICANTE'],
   BASED_PLANTS: ['VEGANO', 'VEGETARIANO'],
   COST: ['BAIXO', 'MEDIO', 'ALTO'],
