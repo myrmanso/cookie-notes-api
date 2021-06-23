@@ -8,7 +8,7 @@ class RecipesService extends BaseService {
 
   searchRecipeByName = async (nameRecipe) => {
     try {
-      return this.model.find({ name: { "$regex": `${nameRecipe}`, "$options": "i" } }, 'name')
+      return this.model.find({ name: { "$regex": `${nameRecipe}`, "$options": "i" } })
     } catch (error) {
       console.log('RecipesService.searchRecipeName - error ', error)
     }
