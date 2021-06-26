@@ -6,7 +6,7 @@ class UserService extends BaseService {
     super(Users)
   }
 
-  async searchUserFollowers(userId) {
+  searchUserFollowers = async (userId) => {
     try {
       return (await this.searchById(userId)).followers;
     } catch (error) {
@@ -14,7 +14,7 @@ class UserService extends BaseService {
     }
   }
 
-  async searchUserFollowing(userId) {
+  searchUserFollowing = async (userId) => {
     try {
       return (await this.searchById(userId)).following;
     } catch (error) {
@@ -22,7 +22,7 @@ class UserService extends BaseService {
     }
   }
 
-  async searchUserRecipes(userId) {
+  searchUserRecipes = async (userId) => {
     try {
       return (await this.searchById(userId)).recipes;
     } catch (error) {
