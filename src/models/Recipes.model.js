@@ -10,6 +10,7 @@ const recipeSchema = new Schema({
   occasion: { type: [String], enum: COMMEMORATIVE_DATES },
   description: { type: String },
   externalLink: { type: String },
+  imgUrl: { type: String },
   recipe: { type: [Object], recipeType },
   role: { type: String, enum: ['public', 'private'], default: 'public' },
   meals: { type: [String], enum: MEALS, required: true },
