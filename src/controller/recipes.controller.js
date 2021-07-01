@@ -33,6 +33,22 @@ class RecipesController {
     }
   }
 
+  getByUserId = async (req, res) => {
+    try {
+      const { userId } = req.params;
+
+      const recipes = await UsersService.searchUserRecipes(userId);
+
+      const results = await Promise.all(recipes.map(recipe => RecipesService.searchById(recipe)));
+
+      const response = await this._builderResponse(results);
+
+      res.status(200).json(response);
+    } catch (error) {
+      console.log('RecipesController.getById - error ', error)
+    }
+  }
+
   getAll = async (req, res) => {
     try {
       const results = await RecipesService.searchAll();
