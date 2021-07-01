@@ -22,9 +22,16 @@ class UserService extends BaseService {
     }
   }
 
+  searchUserById = async (userId) => {
+    try {
+      return await this.searchById(userId);
+    } catch (error) {
+      console.log('BaseService.searchUserRecipes - error ', error)
+    }
+  }
   searchUserRecipes = async (userId) => {
     try {
-      return (await this.searchById(userId)).recipes;
+      return (await this.searchUserById(userId)).recipes;
     } catch (error) {
       console.log('BaseService.searchUserRecipes - error ', error)
     }
