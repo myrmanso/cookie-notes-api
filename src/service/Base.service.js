@@ -11,9 +11,9 @@ class BaseService {
     }
   }
 
-  searchByEmail = async (email) => {
+  findOne = async (options) => {
     try {
-      return await this.model.findOne({ email: email });
+      return await this.model.findOne(options);
 
     } catch (error) {
       console.log('BaseService.searchByEmail - error ', error)
@@ -23,6 +23,14 @@ class BaseService {
   searchById = async (userId) => {
     try {
       return await this.model.findById(userId)
+
+    } catch (error) {
+      console.log('BaseService.searchById - error ', error);
+    }
+  }
+  searchByIdAndPopulate = async (userId, opt) => {
+    try {
+      return await this.model.find({ _id: userId }).populate(opt)
 
     } catch (error) {
       console.log('BaseService.searchById - error ', error);
