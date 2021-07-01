@@ -13,7 +13,7 @@ const recipeSchema = new Schema({
   imgUrl: { type: String },
   recipe: { type: [Object], recipeType },
   role: { type: String, enum: ['public', 'private'], default: 'public' },
-  meals: { type: [String], enum: MEALS, required: true },
+  meals: { type: [String], enum: MEALS },
   flavor: { type: [Object], flavorType },
   basedPlants: { type: String, enum: BASED_PLANTS },
   cost: { type: String, enum: COST },
