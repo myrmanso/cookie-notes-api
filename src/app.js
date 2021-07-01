@@ -2,9 +2,8 @@ require('dotenv').config()
 const express = require('express');
 const cors = require('cors');
 
-const authRouter = require('./routes/auth/auth.routes');
-const userRouter = require('./routes/user/user.routes');
-const recipesRouter = require('./routes/recipes/recipes.routes');
+const apiRoutes = require('./routes/api.routes');
+
 
 require('./config/mongodb.config');
 
@@ -17,10 +16,6 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const prefix = 'api';
-
-app.use(`/${prefix}/auth`, authRouter);
-app.use(`/${prefix}/user`, userRouter);
-app.use(`/${prefix}`, recipesRouter);
+app.use('/api', apiRoutes);
 
 app.listen(process.env.PORT, () => console.log(`App listen on PORT ${process.env.PORT}`));
