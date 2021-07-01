@@ -2,7 +2,6 @@ const express = require('express');
 const RecipesController = require('../../controller/recipes.controller');
 const router = express();
 
-
 router.post('/recipe', RecipesController.create);
 router.patch('/recipe/:recipeId', RecipesController.update);
 
