@@ -4,6 +4,7 @@ const router = express();
 
 router.post('/recipe', RecipesController.create);
 router.patch('/recipe/:recipeId', RecipesController.update);
+router.get('/recipe/:recipeId', RecipesController.getByRecipeId);
 
 router.get('/recipes', RecipesController.getAll);
 router.get('/recipes/name/:name', RecipesController.getByName);
