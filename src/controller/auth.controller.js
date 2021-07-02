@@ -43,7 +43,7 @@ class AuthController {
 
       const token = WebToken.generate({ id: userFromDb._id });
 
-      res.status(200).json({ message: token });
+      res.status(200).json({ result: userFromDb._id, message: token });
     } catch (error) {
       res.status(401).json(error);
     }
