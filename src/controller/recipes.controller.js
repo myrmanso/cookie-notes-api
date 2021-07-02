@@ -45,7 +45,19 @@ class RecipesController {
 
       res.status(200).json(response);
     } catch (error) {
-      console.log('RecipesController.getById - error ', error)
+      console.log('RecipesController.getByUserId - error ', error)
+    }
+  }
+
+  getByRecipeId = async (req, res) => {
+    try {
+      const { recipeId } = req.params;
+
+      const results = await RecipesService.searchById(recipeId);
+
+      res.status(200).json(results);
+    } catch (error) {
+      console.log('RecipesController.getByRecipeId - error ', error)
     }
   }
 
@@ -74,6 +86,21 @@ class RecipesController {
     }
   }
 
+  getByNameAndUser = async (req, res) => {
+    try {
+      const { name, userId } = req.query;
+      console.log(req.query);
+
+      const results = await RecipesService.searchRecipeByNameAnsUser(name, userId);
+
+      const response = await this._builderResponse(results);
+
+      res.status(200).json(response);
+    } catch (error) {
+      console.log('RecipesController.getByName - error ', error)
+    }
+  }
+
   search = async (req, res) => {
     try {
       const { query } = req;
@@ -92,12 +119,36 @@ class RecipesController {
       const { body } = req;
       const { userCreator } = body;
 
-      const result = await RecipesService.create(body)
-      await UsersService.update(userCreator, { recipes: result._id })
+      const result = await RecipesService.create(body);
 
-      res.status(200).json(result)
+      const userRecipes = await UsersService.searchUserRecipes(userCreator);
+      userRecipes.push(result._id);
+
+      await UsersService.update(userCreator, { recipes: userRecipes })
+
+      res.status(200).json({ message: `Recipe with ID ${result._id} was create!` })
     } catch (error) {
       console.log('RecipesController.filterRecipes - error ', error)
+    }
+  }
+
+  updateUserRecipes = async (req, res) => {
+    const { userId, recipeId } = req.params;
+
+    try {
+      const userRecipes = await UsersService.searchUserRecipes(userId);
+
+      const isRecipeAlredyAdd = userRecipes.filter(recipe => recipe == recipeId)[0]
+
+      if (isRecipeAlredyAdd) return res.status(400).json({ message: 'Recipe is alredy add.' })
+
+      userRecipes.push(recipeId);
+
+      await UsersService.update(userId, { recipes: userRecipes });
+
+      res.status(200).json({ message: `Recipe with ID ${recipeId} add with success!` })
+    } catch (error) {
+      console.log('RecipesController.updateUserRecipes - error ', error)
     }
   }
 
@@ -105,9 +156,9 @@ class RecipesController {
     try {
       const { body, params: { recipeId } } = req;
 
-      const result = await RecipesService.update(recipeId, body)
+      await RecipesService.update(recipeId, body)
 
-      res.status(200).json(result)
+      res.status(200).json({ message: `Recipe with ID ${recipeId} was update!` })
     } catch (error) {
       console.log('RecipesController.filterRecipes - error ', error)
     }
