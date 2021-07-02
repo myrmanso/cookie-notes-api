@@ -20,9 +20,9 @@ class BaseService {
     }
   }
 
-  searchById = async (userId) => {
+  searchById = async (id) => {
     try {
-      return await this.model.findById(userId)
+      return await this.model.findById(id)
 
     } catch (error) {
       console.log('BaseService.searchById - error ', error);
